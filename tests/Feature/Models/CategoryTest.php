@@ -81,6 +81,8 @@ class CategoryTest extends TestCase
             ]
         );
         $this->assertTrue($category->is_active);
+
+        $this->assertRegExp('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $category->id);
     }
 
     public function testUpdate()
@@ -103,5 +105,14 @@ class CategoryTest extends TestCase
         foreach ($data as $key => $value) {
             $this->assertEquals($value, $category->{$key});
         }
+    }
+
+    public function testDelete()
+    {
+        $category = factory(Category::class, 10)->create()->first();
+        $category->delete();
+
+        $categories = Category::all();
+        $this->assertCount(9, $categories);
     }
 }
