@@ -46,6 +46,7 @@ class CategoryTest extends TestCase
         );
         $category->refresh();
 
+        $this->assertEquals(36, strlen($category->id));
         $this->assertEquals('test1', $category->name);
         $this->assertNull($category->description);
         $this->assertTrue($category->is_active);
@@ -92,7 +93,7 @@ class CategoryTest extends TestCase
                 'description' => 'test_description',
                 'is_active' => false
             ]
-        )->first();
+        );
 
         $data = [
             'name' => 'teste_name_updated',

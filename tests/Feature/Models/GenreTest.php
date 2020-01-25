@@ -43,6 +43,7 @@ class GenreTest extends TestCase
         );
         $genre->refresh();
 
+        $this->assertEquals(36, strlen($genre->id));
         $this->assertEquals('test1', $genre->name);
         $this->assertTrue($genre->is_active);
 
